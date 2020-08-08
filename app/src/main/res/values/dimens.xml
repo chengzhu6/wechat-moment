@@ -5,5 +5,20 @@
     <dimen name="profile_name_margin_end">8dp</dimen>
     <dimen name="profile_face_margin_end">12dp</dimen>
     <dimen name="profile_bottom_height">15dp</dimen>
+    <dimen name="tweet_user_face_height_width">40dp</dimen>
+    <dimen name="tweet_user_face_margin_start">12dp</dimen>
+    <dimen name="tweet_user_face_margin_top">12dp</dimen>
+    <dimen name="tweet_user_name_font_size">15sp</dimen>
+    <dimen name="tweet_user_face_margin_end">8dp</dimen>
+    <dimen name="tweet_user_name_margin_start">8dp</dimen>
+    <dimen name="tweet_content_font_size">13sp</dimen>
+    <dimen name="tweet_content_margin_top">4dp</dimen>
+    <dimen name="tweet_date_font_size">9sp</dimen>
+    <dimen name="tweet_date_margin_top">4dp</dimen>
+    <dimen name="tweet_margin_end">12dp</dimen>
+    <dimen name="tweet_divide_line_height">1dp</dimen>
+    <dimen name="tweet_interactive_range_margin_top">8dp</dimen>
+    <dimen name="tweet_operation_button_height">15dp</dimen>
+    <dimen name="tweet_operation_button_width">15dp</dimen>
     <string name="profile_image_ratio">H, 365,165</string>
 </resources>
