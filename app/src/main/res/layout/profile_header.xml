@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/profile_background_image"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/profile_for_test"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintDimensionRatio="@string/profile_image_ratio"
+        android:contentDescription="@string/profile_background_image_description" />
+
+    <TextView
+        android:id="@+id/profile_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/basic_white"
+        android:textSize="@dimen/profile_name_font_size"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/profile_face"
+        android:layout_marginEnd="@dimen/profile_name_margin_end"
+        app:layout_constraintBottom_toBottomOf="@id/profile_background_image"
+        tools:text="Castellan" />
+
+    <ImageView
+        android:id="@+id/profile_face"
+        android:layout_width="@dimen/mine_face_height_width"
+        android:layout_height="@dimen/mine_face_height_width"
+        android:src="@drawable/face"
+        android:layout_marginEnd="@dimen/profile_face_margin_end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/profile_background_image"
+        android:contentDescription="@string/profile_face_image_description" />
+
+    <View
+        android:id="@+id/profile_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/profile_bottom_height"
+        app:layout_constraintTop_toBottomOf="@+id/profile_background_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

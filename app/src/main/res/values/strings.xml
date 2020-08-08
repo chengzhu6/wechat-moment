@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">WeChatMoments</string>
+    <string name="profile_face_image_description">face</string>
+    <string name="profile_background_image_description">profile_background_image</string>
+</resources>

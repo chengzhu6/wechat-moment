@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="mine_face_height_width">60dp</dimen>
+    <dimen name="profile_name_font_size">15sp</dimen>
+    <dimen name="profile_name_margin_end">8dp</dimen>
+    <dimen name="profile_face_margin_end">12dp</dimen>
+    <dimen name="profile_bottom_height">15dp</dimen>
+    <string name="profile_image_ratio">H, 365,165</string>
+</resources>
