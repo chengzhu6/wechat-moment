@@ -1,12 +1,15 @@
 package com.thoughtworks.wechatmoments.ui;
 
+import android.os.Build;
+import android.os.Bundle;
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-
+import com.thoughtworks.wechatmoments.MainApplication;
 import com.thoughtworks.wechatmoments.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private MainViewModel mainViewModel;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,20 +29,26 @@ public class MainActivity extends AppCompatActivity {
 
     private void obtainViewModel() {
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        MainApplication application = (MainApplication) getApplication();
+        mainViewModel.setMomentRepository(application.momentRepository());
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void init() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        MainRecycleViewAdapter mainRecycleViewAdapter = new MainRecycleViewAdapter();
+        recyclerView.setAdapter(mainRecycleViewAdapter);
         recyclerView.setHasFixedSize(true);
-        mainViewModel.observerMomentDataLiveData(this, momentData -> {
-            MainRecycleViewAdapter mainRecycleViewAdapter = new MainRecycleViewAdapter(momentData);
-            recyclerView.setAdapter(mainRecycleViewAdapter);
-        });
+
+        mainViewModel.observerProfileLiveData(this, mainRecycleViewAdapter::insertProfile);
+        mainViewModel.observerTweetsLiveData(this, mainRecycleViewAdapter::insertTweets);
         fetchData();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void fetchData() {
-        mainViewModel.requestMomentData();
+        mainViewModel.requestProfile();
+        mainViewModel.requestTweets();
     }
 
     private void getView() {

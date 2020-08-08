@@ -29,14 +29,16 @@
 
     <TextView
         android:id="@+id/tweet_content"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/tweet_content_margin_top"
         android:ellipsize="end"
         android:maxLines="7"
+        android:layout_marginEnd="@dimen/tweet_content_margin_end"
         android:textSize="@dimen/tweet_content_font_size"
         app:layout_constraintStart_toStartOf="@id/tweet_user_name"
         app:layout_constraintTop_toBottomOf="@+id/tweet_user_name"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:text="今天很开心" />
 
     <TextView
