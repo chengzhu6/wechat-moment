@@ -3,4 +3,6 @@
     <string name="profile_face_image_description">face</string>
     <string name="profile_background_image_description">profile_background_image</string>
     <string name="tweet_user_face_image_description">tweet_user_face</string>
+    <string name="tweet_images_item_description">tweet_images_item</string>
+    <string name="tweet_send_date">刚刚</string>
 </resources>

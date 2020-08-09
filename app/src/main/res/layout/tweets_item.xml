@@ -11,9 +11,9 @@
         android:layout_height="@dimen/tweet_user_face_height_width"
         android:layout_marginStart="@dimen/tweet_user_face_margin_start"
         android:layout_marginTop="@dimen/tweet_user_face_margin_top"
+        android:contentDescription="@string/tweet_user_face_image_description"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/tweet_user_face_image_description"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tweet_user_name"
@@ -32,14 +32,25 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/tweet_content_margin_top"
+        android:layout_marginEnd="@dimen/tweet_content_margin_end"
         android:ellipsize="end"
         android:maxLines="7"
-        android:layout_marginEnd="@dimen/tweet_content_margin_end"
+        android:visibility="gone"
         android:textSize="@dimen/tweet_content_font_size"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/tweet_user_name"
         app:layout_constraintTop_toBottomOf="@+id/tweet_user_name"
-        app:layout_constraintEnd_toEndOf="parent"
         tools:text="今天很开心" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tweet_images"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/tweet_images_margin_top"
+        app:layout_constraintEnd_toEndOf="@id/tweet_content"
+        app:layout_constraintStart_toStartOf="@id/tweet_content"
+        app:layout_constraintTop_toBottomOf="@id/tweet_content"
+        tools:listitem="@layout/tweet_item_images_item"/>
 
     <TextView
         android:id="@+id/tweet_date"
@@ -48,7 +59,7 @@
         android:layout_marginTop="@dimen/tweet_date_margin_top"
         android:textSize="@dimen/tweet_date_font_size"
         app:layout_constraintStart_toStartOf="@id/tweet_user_name"
-        app:layout_constraintTop_toBottomOf="@id/tweet_content"
+        app:layout_constraintTop_toBottomOf="@id/tweet_images"
         tools:text="7分钟前" />
 
     <Button

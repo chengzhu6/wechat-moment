@@ -1,12 +1,16 @@
 package com.thoughtworks.wechatmoments.ui;
 
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -21,7 +25,7 @@ import com.thoughtworks.wechatmoments.model.Tweet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainRecycleViewAdapter extends RecyclerView.Adapter<MainRecycleViewAdapter.MainViewHolder> {
+public class MainRecycleViewAdapter extends RecyclerView.Adapter<MainViewHolder> {
 
     private List<MomentData> momentData;
 
@@ -69,16 +73,6 @@ public class MainRecycleViewAdapter extends RecyclerView.Adapter<MainRecycleView
         return this.momentData.size();
     }
 
-    public abstract static class MainViewHolder extends RecyclerView.ViewHolder {
-
-        public MainViewHolder(@NonNull View itemView) {
-            super(itemView);
-        }
-
-        public abstract void setData(MomentData momentData);
-    }
-
-
     private static class ProfileViewHolder extends MainViewHolder {
         private ImageView backgroundIV;
         private TextView usernameTV;
@@ -111,14 +105,19 @@ public class MainRecycleViewAdapter extends RecyclerView.Adapter<MainRecycleView
         private ImageView tweetSenderFaceIV;
         private TextView tweetSenderUsernameTV;
         private TextView tweetContentTV;
+        private RecyclerView tweetImagesRecycleView;
+        private TextView tweetSendDateTV;
 
         public TweetViewHolder(@NonNull View itemView) {
             super(itemView);
             tweetSenderFaceIV = itemView.findViewById(R.id.tweet_user_face);
             tweetSenderUsernameTV = itemView.findViewById(R.id.tweet_user_name);
             tweetContentTV = itemView.findViewById(R.id.tweet_content);
+            tweetImagesRecycleView = itemView.findViewById(R.id.tweet_images);
+            tweetSendDateTV = itemView.findViewById(R.id.tweet_date);
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
         public void setData(MomentData momentData) {
             Tweet data = (Tweet) momentData.getData();
@@ -127,7 +126,20 @@ public class MainRecycleViewAdapter extends RecyclerView.Adapter<MainRecycleView
                     .apply(RequestOptions.bitmapTransform(new RoundedCorners(20)))
                     .into(tweetSenderFaceIV);
             tweetSenderUsernameTV.setText(data.getUsername());
-            tweetContentTV.setText(data.getContent());
+            String content = data.getContent();
+            if (content != null) {
+                tweetContentTV.setVisibility(View.VISIBLE);
+                tweetContentTV.setText(content);
+            }
+            tweetSendDateTV.setText(R.string.tweet_send_date);
+            List<String> imagesPath = data.getImagesPath();
+            if (imagesPath != null) {
+                tweetImagesRecycleView.setAdapter(new TweetImageRecycleViewAdapter(imagesPath));
+                GridLayoutManager gridLayoutManager = new GridLayoutManager(itemView.getContext(), 3);
+                tweetImagesRecycleView.setLayoutManager(gridLayoutManager);
+
+                tweetImagesRecycleView.setHasFixedSize(true);
+            }
         }
     }
 

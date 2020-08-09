@@ -76,6 +76,7 @@ public class MainViewModel extends ViewModel {
                 .doOnSuccess(tweetResponses -> tweetsLiveData.postValue(tweetResponses.stream()
                         .filter(tweetResponse -> tweetResponse.getSender() != null)
                         .map(Tweet::fromTweetResponse)
+                        .filter(Tweet::isValid)
                         .map(MomentData::fromTweet)
                         .collect(Collectors.toList())))
                 .subscribe();
