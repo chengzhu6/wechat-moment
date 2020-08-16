@@ -22,5 +22,10 @@
     <dimen name="tweet_operation_button_width">15dp</dimen>
     <dimen name="tweet_content_margin_end">16dp</dimen>
     <dimen name="tweet_images_margin_top">4dp</dimen>
+    <dimen name="tweet_comment_username_font_size">14sp</dimen>
+    <dimen name="tweet_comment_username_margin_start">4dp</dimen>
+    <dimen name="tweet_comment_content_font_size">14sp</dimen>
+    <dimen name="tweet_comment_content_margin_start">4dp</dimen>
+    <dimen name="tweet_comment_range_margin_bottom">8dp</dimen>
     <string name="profile_image_ratio">H, 365:165</string>
 </resources>

@@ -6,4 +6,5 @@
     <color name="basic_white">#ffffff</color>
     <color name="tweet_name_color">#516285</color>
     <color name="tweet_divide_line_color">#C0BDBD</color>
+    <color name="tweet_comment_background_color">#E7E7E5</color>
 </resources>

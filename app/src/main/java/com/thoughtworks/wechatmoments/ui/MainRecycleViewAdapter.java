@@ -4,19 +4,20 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.thoughtworks.wechatmoments.R;
+import com.thoughtworks.wechatmoments.model.Comment;
 import com.thoughtworks.wechatmoments.model.MomentData;
 import com.thoughtworks.wechatmoments.model.MomentData.MomentDataType;
 import com.thoughtworks.wechatmoments.model.Profile;
@@ -107,6 +108,7 @@ public class MainRecycleViewAdapter extends RecyclerView.Adapter<MainViewHolder>
         private TextView tweetContentTV;
         private RecyclerView tweetImagesRecycleView;
         private TextView tweetSendDateTV;
+        private RecyclerView tweetCommentsRecycleView;
 
         public TweetViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -115,6 +117,7 @@ public class MainRecycleViewAdapter extends RecyclerView.Adapter<MainViewHolder>
             tweetContentTV = itemView.findViewById(R.id.tweet_content);
             tweetImagesRecycleView = itemView.findViewById(R.id.tweet_images);
             tweetSendDateTV = itemView.findViewById(R.id.tweet_date);
+            tweetCommentsRecycleView = itemView.findViewById(R.id.interactive_range);
         }
 
         @RequiresApi(api = Build.VERSION_CODES.N)
@@ -132,6 +135,23 @@ public class MainRecycleViewAdapter extends RecyclerView.Adapter<MainViewHolder>
                 tweetContentTV.setText(content);
             }
             tweetSendDateTV.setText(R.string.tweet_send_date);
+            loadImages(data);
+            loadIComments(data);
+        }
+
+        private void loadIComments(Tweet data) {
+            List<Comment> comments = data.getComments();
+            if (comments != null && !comments.isEmpty()) {
+                TweetCommentRecycleViewAdapter adapter = new TweetCommentRecycleViewAdapter();
+                adapter.setComments(comments);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(itemView.getContext());
+                tweetCommentsRecycleView.setAdapter(adapter);
+                tweetCommentsRecycleView.setLayoutManager(linearLayoutManager);
+                tweetImagesRecycleView.setHasFixedSize(true);
+            }
+        }
+
+        private void loadImages(Tweet data) {
             List<String> imagesPath = data.getImagesPath();
             if (imagesPath != null) {
                 tweetImagesRecycleView.setAdapter(new TweetImageRecycleViewAdapter(imagesPath));

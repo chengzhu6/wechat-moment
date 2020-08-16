@@ -71,16 +71,20 @@
         app:layout_constraintBaseline_toBaselineOf="@id/tweet_date"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <FrameLayout
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/interactive_range"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:background="@drawable/comment_background"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/tweet_interactive_range_margin_top"
+        android:layout_marginBottom="@dimen/tweet_comment_range_margin_bottom"
         app:layout_constraintEnd_toEndOf="@id/tweet_operation"
         app:layout_constraintStart_toStartOf="@id/tweet_user_name"
+        app:layout_constraintBottom_toTopOf="@id/tweet_divide"
         app:layout_constraintTop_toBottomOf="@id/tweet_date" />
 
     <View
+        android:id="@+id/tweet_divide"
         android:layout_width="match_parent"
         android:layout_height="@dimen/tweet_divide_line_height"
         android:background="@color/tweet_divide_line_color"
